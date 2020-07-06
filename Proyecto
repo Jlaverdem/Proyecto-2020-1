@@ -558,6 +558,53 @@ def menu(dic_box,wn):
             print("OPCION INVALIDA")  
             
 #FUNCIONES DE LA INTERFAZ GRAFICA DE USUARIO
+def caja(t, lado,color, caja):
+        t.fillcolor(color)
+        t.begin_fill()
+        for n in range(0, 4):
+                t.forward(lado)
+                t.left(90)
+        t.write("caja"+str(caja),False, "left", ("arial",10,"bold"))     
+        t.end_fill()        
+def estante(t):
+        t.forward(300)
+        t.backward(300)
+        t.left(180)
+        t.forward(300)
+        t.right(90)
+        t.forward(300)
+        t.right(90)
+        for s in range(0,3):
+                t.forward(200)
+                t.right(90)
+                t.forward(300)
+                t.backward(300)
+                t.left(90)
+        t.up()        
+        t.goto(0,0)
+        t.down()                              
+def inicioimpresion(listbox):
+        if len(listbox)<3:
+            n=len(listbox)
+        else:
+           n=3 
+        colores=["lightskyblue","dodgerblue","royalblue"]
+        t = turtle.Turtle()
+        myWin = turtle.Screen()
+        myWin.title("Organizarcajasmenor-mayor")
+        t.pensize(5)
+        t.speed(5)
+        t.color("black")
+        estante(t)
+        t.pensize(1)
+        t.left(180)
+        t.forward(150+50)
+        t.left(180)
+        for s in range(0, n):
+                caja(t, 50+s*50,colores[s],listbox[s][1])
+                if s!=n-1:
+                        t.forward(200-s*50)
+        myWin.exitonclick()
 
 #Limpieza pantalla
 def clear_screen():
